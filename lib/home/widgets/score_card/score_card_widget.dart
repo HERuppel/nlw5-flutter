@@ -1,30 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:nlw5/core/app_text_styles.dart';
+import 'package:nlw5/home/widgets/chart/chart_widget.dart';
 
 class ScoreCardWidget extends StatelessWidget {
   const ScoreCardWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Row(children: [
-      Expanded(
-          flex: 1,
-          child: Container(
-            width: 80,
-            height: 80,
-            color: Colors.red,
-          )),
-      Expanded(
-          flex: 3,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 24),
-            child: Column(
-              children: [
-                Text('Vamos começar!'),
-                Text('Complete os desafios e avance em conhecimento')
-              ],
-            ),
-          ))
-    ]));
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+          height: 136,
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(15)),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            Expanded(flex: 1, child: ChartWidget()),
+            Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Vamos começar!', style: AppTextStyles.heading),
+                      Text('Complete os desafios e avance em conhecimento',
+                          style: AppTextStyles.body)
+                    ],
+                  ),
+                ))
+          ])),
+    );
   }
 }
