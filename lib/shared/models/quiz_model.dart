@@ -7,14 +7,14 @@ enum Level {
   perito,
 }
 
-class QuizModal {
+class QuizModel {
   final String title;
   final List<QuestionModel> questions;
   final int questionAnswered;
   final String image;
   final Level level;
 
-  QuizModal(
+  QuizModel(
       {required this.title,
       required this.questions,
       this.questionAnswered = 0,
