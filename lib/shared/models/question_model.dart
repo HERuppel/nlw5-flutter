@@ -21,7 +21,7 @@ class QuestionModel {
     return QuestionModel(
       title: map['title'],
       awnsers: List<AwnserModel>.from(
-          map['awnsers']?.map((x) => AwnserModel.fromMap(x))),
+          map['answers']?.map((x) => AwnserModel.fromMap(x))),
     );
   }
 

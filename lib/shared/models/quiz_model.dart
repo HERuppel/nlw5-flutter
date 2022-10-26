@@ -52,7 +52,7 @@ class QuizModel {
       questions: List<QuestionModel>.from(
           map['questions']?.map((x) => QuestionModel.fromMap(x))),
       questionAnswered: map['questionAnswered'],
-      imagem: map['imagem'],
+      imagem: map['image'],
       level: map['level'].toString().parse,
     );
   }
