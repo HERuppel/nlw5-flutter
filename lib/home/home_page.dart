@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nlw5/challenge/challenge_page.dart';
 import 'package:nlw5/core/app_colors.dart';
 import 'package:nlw5/home/home_controller.dart';
 import 'package:nlw5/home/home_state.dart';
@@ -60,6 +61,12 @@ class _HomePageState extends State<HomePage> {
                           completed:
                               '${e.questionAnswered} de ${e.questions.length}',
                           percent: e.questionAnswered / e.questions.length,
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChallengePage()));
+                          },
                         ))
                     .toList(),
               ))
