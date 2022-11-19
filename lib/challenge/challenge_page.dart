@@ -8,7 +8,9 @@ import 'package:nlw5/shared/models/question_model.dart';
 
 class ChallengePage extends StatefulWidget {
   final List<QuestionModel> questions;
-  ChallengePage({Key? key, required this.questions}) : super(key: key);
+  final String title;
+  ChallengePage({Key? key, required this.questions, required this.title})
+      : super(key: key);
 
   @override
   _ChallengePageState createState() => _ChallengePageState();
@@ -30,6 +32,13 @@ class _ChallengePageState extends State<ChallengePage> {
     if (controller.currentPage < widget.questions.length)
       pageController.nextPage(
           duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+  }
+
+  void onSelected(bool value) {
+    if (value) {
+      controller.rightAnswerAmount++;
+    }
+    nextPage();
   }
 
   @override
@@ -60,7 +69,7 @@ class _ChallengePageState extends State<ChallengePage> {
             ...widget.questions
                 .map((question) => QuizWidget(
                       question: question,
-                      onChange: nextPage,
+                      onSelected: onSelected,
                     ))
                 .toList()
           ],
@@ -85,10 +94,15 @@ class _ChallengePageState extends State<ChallengePage> {
                                 child: NextButtonWidget.green(
                               label: "Confirmar",
                               onTap: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ResultPage()));
+                                        builder: (context) => ResultPage(
+                                              title: widget.title,
+                                              length: widget.questions.length,
+                                              rightAnswers:
+                                                  controller.rightAnswerAmount,
+                                            )));
                               },
                             )),
                         ],

@@ -4,6 +4,17 @@ import 'package:nlw5/core/app_images.dart';
 import 'package:nlw5/core/app_text_styles.dart';
 
 class ResultPage extends StatelessWidget {
+  final String title;
+  final int length;
+  final int rightAnswers;
+
+  const ResultPage(
+      {Key? key,
+      required this.title,
+      required this.length,
+      required this.rightAnswers})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,11 +38,11 @@ class ResultPage extends StatelessWidget {
                     style: AppTextStyles.body,
                     children: [
                       TextSpan(
-                        text: "\nGerenciamento de estado",
+                        text: "\n$title",
                         style: AppTextStyles.bodyBold,
                       ),
                       TextSpan(
-                        text: "\ncom 6 de 10 acertos.",
+                        text: "\ncom $rightAnswers de $length acertos.",
                         style: AppTextStyles.body,
                       ),
                     ]),
