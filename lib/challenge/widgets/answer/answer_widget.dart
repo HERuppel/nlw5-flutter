@@ -6,12 +6,14 @@ import 'package:nlw5/shared/models/answer_model.dart';
 class AnswerWidget extends StatelessWidget {
   final AwnserModel answer;
   final bool isSelected;
+  final bool disabled;
   final VoidCallback onTap;
   const AnswerWidget(
       {Key? key,
       required this.answer,
       this.isSelected = false,
-      required this.onTap})
+      required this.onTap,
+      this.disabled = false})
       : super(key: key);
 
   Color get _selectedColorRight =>
@@ -35,42 +37,46 @@ class AnswerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-            padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
-                color: isSelected ? _selectedColorCardRight : AppColors.white,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.fromBorderSide(BorderSide(
-                    color: isSelected
-                        ? _selectedBorderCardRight
-                        : AppColors.border))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                    child: Text(answer.title,
-                        style: isSelected
-                            ? _selectedTextStyleRight
-                            : AppTextStyles.body)),
-                Container(
-                  width: 24,
-                  height: 24,
-                  child: isSelected
-                      ? Icon(_selectedIconRight,
-                          size: 16, color: AppColors.white)
-                      : null,
-                  decoration: BoxDecoration(
-                      color: isSelected ? _selectedColorRight : AppColors.white,
-                      borderRadius: BorderRadius.circular(500),
-                      border: Border.fromBorderSide(BorderSide(
-                          color: isSelected
-                              ? _selectedBorderRight
-                              : AppColors.border))),
-                )
-              ],
-            )),
+      child: IgnorePointer(
+        ignoring: disabled,
+        child: GestureDetector(
+          onTap: onTap,
+          child: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                  color: isSelected ? _selectedColorCardRight : AppColors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.fromBorderSide(BorderSide(
+                      color: isSelected
+                          ? _selectedBorderCardRight
+                          : AppColors.border))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                      child: Text(answer.title,
+                          style: isSelected
+                              ? _selectedTextStyleRight
+                              : AppTextStyles.body)),
+                  Container(
+                    width: 24,
+                    height: 24,
+                    child: isSelected
+                        ? Icon(_selectedIconRight,
+                            size: 16, color: AppColors.white)
+                        : null,
+                    decoration: BoxDecoration(
+                        color:
+                            isSelected ? _selectedColorRight : AppColors.white,
+                        borderRadius: BorderRadius.circular(500),
+                        border: Border.fromBorderSide(BorderSide(
+                            color: isSelected
+                                ? _selectedBorderRight
+                                : AppColors.border))),
+                  )
+                ],
+              )),
+        ),
       ),
     );
   }
