@@ -3,6 +3,7 @@ import 'package:nlw5/challenge/challenge_controller.dart';
 import 'package:nlw5/challenge/widgets/next_button/next_button_widget.dart';
 import 'package:nlw5/challenge/widgets/question_indicator/question_indicator_widget.dart';
 import 'package:nlw5/challenge/widgets/quiz/quiz_widget.dart';
+import 'package:nlw5/result/result_page.dart';
 import 'package:nlw5/shared/models/question_model.dart';
 
 class ChallengePage extends StatefulWidget {
@@ -84,7 +85,10 @@ class _ChallengePageState extends State<ChallengePage> {
                                 child: NextButtonWidget.green(
                               label: "Confirmar",
                               onTap: () {
-                                Navigator.pop(context);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ResultPage()));
                               },
                             )),
                         ],
